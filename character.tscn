@@ -1,0 +1,295 @@
+[gd_scene load_steps=23 format=3 uid="uid://d5360lvtbvie"]
+
+[ext_resource type="Script" path="res://character.gd" id="1_611ae"]
+[ext_resource type="Resource" uid="uid://cpfixvdixxqmv" path="res://magic/panel/panel_data_test.tres" id="2_jbxho"]
+[ext_resource type="Script" path="res://Interact.gd" id="2_psckv"]
+[ext_resource type="Shader" path="res://shaders/wand_tip_shader.gdshader" id="3_t2jhw"]
+[ext_resource type="Shader" path="res://shaders/magic.gdshader" id="4_y7kw6"]
+[ext_resource type="PackedScene" uid="uid://djtu0nb7ywvnk" path="res://components/spellcraft_component.tscn" id="6_rxapj"]
+[ext_resource type="PackedScene" uid="uid://bfhmafutkpdfb" path="res://components/statuses_component.tscn" id="7_jpr4f"]
+[ext_resource type="PackedScene" uid="uid://dilj54b7qj63h" path="res://character_animation.tscn" id="8_n7h8n"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_abrjf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1cuxp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c33ep"]
+render_priority = 127
+albedo_color = Color(0.109804, 0.0784314, 0.027451, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 5.04
+emission_operator = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8ynqx"]
+material = SubResource("StandardMaterial3D_c33ep")
+top_radius = 0.005
+bottom_radius = 0.005
+height = 0.247
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jdur1"]
+shader = ExtResource("3_t2jhw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5so4"]
+render_priority = 0
+shader = ExtResource("4_y7kw6")
+shader_parameter/power = 0.0
+shader_parameter/light_intensity = 1.0
+shader_parameter/light_color = Vector3(1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ajyor"]
+material = SubResource("ShaderMaterial_b5so4")
+size = Vector3(0.001, 0.001, 0.001)
+
+[sub_resource type="Animation" id="Animation_rsuby"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/WandPosition/Wand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/WandPosition/Wand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.718436, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yhgmo"]
+resource_name = "cast"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/WandPosition/Wand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1, 1.5),
+"transitions": PackedFloat32Array(1, 0.5, 0.5, 1),
+"update": 0,
+"values": [Vector3(-0.718436, 0, 0), Vector3(-1.24025, 0, 0), Vector3(-1.24025, 0, 0), Vector3(-0.718436, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/WandPosition/Wand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1, 1.5),
+"transitions": PackedFloat32Array(1, 0.5, 0.5, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0798565, 0, -0.0664549), Vector3(-0.0798565, 0, -0.0664549), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8fxat"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/WandPosition/Wand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.2, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.036, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/WandPosition/Wand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.2, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(-0.718436, 0, 0), Vector3(-0.85171, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vrowg"]
+resource_name = "light"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/WandPosition/Wand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(-0.718436, 0, 0), Vector3(-0.559932, -0.486087, 0.632981)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/WandPosition/Wand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0751239, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1ts8f"]
+resource_name = "move"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/WandPosition/Wand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0442324, 0.0323952, 0), Vector3(0, 0, 0), Vector3(0.0442954, 0.0309204, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bhdtc"]
+resource_name = "prepared"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/WandPosition/Wand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.0731442, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/WandPosition/Wand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.718436, 0, 0), Vector3(-0.133087, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b45kd"]
+_data = {
+"RESET": SubResource("Animation_rsuby"),
+"cast": SubResource("Animation_yhgmo"),
+"idle": SubResource("Animation_8fxat"),
+"light": SubResource("Animation_vrowg"),
+"move": SubResource("Animation_1ts8f"),
+"prepared": SubResource("Animation_bhdtc")
+}
+
+[node name="Character" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14577e-05, 0.72062, -0.00247538)
+script = ExtResource("1_611ae")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_abrjf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_1cuxp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0213728, 0.942265, -0.24369)
+current = true
+
+[node name="Interact2" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("2_psckv")
+max_interaction_distance = 2.0
+
+[node name="Control" type="Control" parent="Camera3D/Interact2"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Camera3D/Interact2/Control"]
+custom_minimum_size = Vector2(0, -10)
+layout_mode = 0
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 43.0
+text = "Interact"
+
+[node name="Holder" type="SpringArm3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -0.998754, -0.0499131, 0, 0.0499131, -0.998754, -0.0213728, -0.00767004, -0.0725299)
+spring_length = 0.2
+
+[node name="WandPosition" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.284491, -0.0754625, -0.326031)
+
+[node name="Wand" type="MeshInstance3D" parent="Camera3D/WandPosition"]
+transform = Transform3D(1, 0, 0, 0, 0.752836, 0.658208, 0, -0.658208, 0.752836, 0, 0, 0)
+mesh = SubResource("CylinderMesh_8ynqx")
+skeleton = NodePath("../..")
+
+[node name="WandTip" type="Marker3D" parent="Camera3D/WandPosition/Wand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00169069, 0.125225, -0.00201964)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Camera3D/WandPosition/Wand/WandTip"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00276804, -0.00302076, 0.00306487)
+amount = 50
+lifetime = 3.0
+local_coords = true
+process_material = SubResource("ShaderMaterial_jdur1")
+draw_pass_1 = SubResource("BoxMesh_ajyor")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D/WandPosition/Wand/WandTip"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+playback_default_blend_time = 0.05
+libraries = {
+"": SubResource("AnimationLibrary_b45kd")
+}
+
+[node name="SpellcraftComponent" parent="." node_paths=PackedStringArray("statuses_component", "particles", "animation_component", "light") instance=ExtResource("6_rxapj")]
+statuses_component = NodePath("../StatusesComponent")
+particles = NodePath("../Camera3D/WandPosition/Wand/WandTip/GPUParticles3D")
+animation_component = NodePath("../character_animation")
+light = NodePath("../Camera3D/WandPosition/Wand/WandTip/OmniLight3D")
+spell_panel_data = ExtResource("2_jbxho")
+
+[node name="StatusesComponent" parent="." instance=ExtResource("7_jpr4f")]
+
+[node name="character_animation" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("8_n7h8n")]
+animation_player = NodePath("../AnimationPlayer")

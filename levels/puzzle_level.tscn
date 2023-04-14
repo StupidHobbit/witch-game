@@ -1,0 +1,62 @@
+[gd_scene load_steps=12 format=3 uid="uid://db7xw6ksxy1wg"]
+
+[ext_resource type="PackedScene" uid="uid://b3d2dvjw10l56" path="res://levels/floor.tscn" id="1_h6jcc"]
+[ext_resource type="Script" path="res://levels/puzzle_level.gd" id="1_sf6i1"]
+[ext_resource type="PackedScene" uid="uid://d5360lvtbvie" path="res://character.tscn" id="2_ab4j5"]
+[ext_resource type="PackedScene" uid="uid://b8anht10uob1" path="res://interactables/bulb.tscn" id="4_wrwgy"]
+[ext_resource type="PackedScene" uid="uid://3d3yxmshcucd" path="res://interactables/book.tscn" id="5_r5nc6"]
+[ext_resource type="PackedScene" uid="uid://c0f6t66cjq75k" path="res://interactables/book_yellow.tscn" id="6_rubki"]
+
+[sub_resource type="Sky" id="Sky_qba0a"]
+
+[sub_resource type="Environment" id="Environment_2iaam"]
+background_mode = 2
+sky = SubResource("Sky_qba0a")
+ambient_light_color = Color(1, 0.94902, 0.8, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.03
+glow_strength = 2.0
+fog_enabled = true
+fog_light_color = Color(1, 0.94902, 0.8, 1)
+fog_light_energy = 0.03
+fog_density = 0.1
+volumetric_fog_density = 0.25
+volumetric_fog_albedo = Color(1, 0.94902, 0.8, 1)
+volumetric_fog_emission = Color(1, 0.94902, 0.8, 1)
+volumetric_fog_emission_energy = 17.49
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0p7l"]
+albedo_color = Color(0.286275, 0.223529, 0.0901961, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ugmwn"]
+material = SubResource("StandardMaterial3D_y0p7l")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qkluv"]
+
+[node name="puzzle_level" type="Node"]
+script = ExtResource("1_sf6i1")
+
+[node name="Floor" parent="." instance=ExtResource("1_h6jcc")]
+
+[node name="Character" parent="." instance=ExtResource("2_ab4j5")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2iaam")
+
+[node name="TestInteractable" parent="." instance=ExtResource("4_wrwgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99578, 1.72093, 0.28227)
+
+[node name="book" parent="." instance=ExtResource("5_r5nc6")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.64126, 0.5234, 0.248497)
+
+[node name="book_yellow" parent="." instance=ExtResource("6_rubki")]
+transform = Transform3D(1, 0, 0, 0, 0.00581196, 0.999983, 0, -0.999983, 0.00581196, -2.16374, 0.525066, 0.323041)
+
+[node name="table" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="table"]
+mesh = SubResource("BoxMesh_ugmwn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="table"]
+shape = SubResource("BoxShape3D_qkluv")

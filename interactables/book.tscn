@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://3d3yxmshcucd"]
+
+[ext_resource type="Script" path="res://interactables/physics_examinable.gd" id="1_l30o0"]
+[ext_resource type="PackedScene" uid="uid://cmvmsgbraeh0o" path="res://assets/book_black_01.blend" id="1_riqre"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a2ms3"]
+size = Vector3(0.163, 0.241, 0.042)
+
+[node name="book" type="Node3D"]
+script = ExtResource("1_l30o0")
+
+[node name="collision" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00419477, 0, 0)
+shape = SubResource("BoxShape3D_a2ms3")
+
+[node name="book_black_01" parent="collision" instance=ExtResource("1_riqre")]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SpellData" load_steps=3 format=3 uid="uid://b4tn8kav51gu1"]
+
+[ext_resource type="Script" path="res://magic/spell_data.gd" id="1_1js4f"]
+[ext_resource type="Texture2D" uid="uid://dsvuymva43pq3" path="res://assets/icons/explosion-rays.svg" id="2_3cmpi"]
+
+[resource]
+script = ExtResource("1_1js4f")
+slug = "light"
+name = "Light"
+description = "Preparing this spell will light your wand with a bright light"
+texture = ExtResource("2_3cmpi")
+prepare_time = 1.0
+color = Color(0.972549, 0.905882, 0.109804, 1)
+light_intensity = 2.0

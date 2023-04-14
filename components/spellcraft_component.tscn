@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://djtu0nb7ywvnk"]
+
+[ext_resource type="Script" path="res://components/SpellcraftComponent.gd" id="1_aljns"]
+[ext_resource type="Script" path="res://SpellPanelInterface.gd" id="2_uh2vv"]
+[ext_resource type="PackedScene" uid="uid://df3o4x1dkx6lh" path="res://ui/spell_panel.tscn" id="3_82o7l"]
+
+[node name="SpellcraftComponent" type="Node"]
+script = ExtResource("1_aljns")
+
+[node name="SpellPanelInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_uh2vv")
+
+[node name="SpellPanel" parent="SpellPanelInterface" instance=ExtResource("3_82o7l")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -75.0
+offset_right = 32.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0

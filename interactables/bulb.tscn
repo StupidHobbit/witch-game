@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8anht10uob1"]
+
+[ext_resource type="Script" path="res://interactables/bulb.gd" id="1_smdpv"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fvfpt"]
+height = 0.02
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pigvk"]
+albedo_color = Color(0.329412, 0.329412, 0.329412, 1)
+metallic = 0.26
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cuqro"]
+material = SubResource("StandardMaterial3D_pigvk")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.02
+
+[node name="Bulb" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.06038, 0.888383, 0.32781)
+script = ExtResource("1_smdpv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_fvfpt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1.00884, 0, 0, 0, 1.00884, 0, 0, 0, 1.00884, 0, 0, 0)
+mesh = SubResource("CylinderMesh_cuqro")
+
+[node name="Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0447665, 0)

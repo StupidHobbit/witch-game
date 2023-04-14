@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfhmafutkpdfb"]
+
+[ext_resource type="Script" path="res://components/StatusesComponent.gd" id="1_6m4jj"]
+
+[node name="StatusesComponent" type="Node"]
+script = ExtResource("1_6m4jj")
