@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://brw72m6o6kv8p"]
+
+[ext_resource type="PackedScene" uid="uid://diuvtfxv87grj" path="res://assets/Models/Wand.glb" id="1_o3slk"]
+
+[node name="Wand" instance=ExtResource("1_o3slk")]

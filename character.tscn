@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://d5360lvtbvie"]
+[gd_scene load_steps=22 format=3 uid="uid://d5360lvtbvie"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_611ae"]
 [ext_resource type="Resource" uid="uid://cpfixvdixxqmv" path="res://magic/panel/panel_data_test.tres" id="2_jbxho"]
 [ext_resource type="Script" path="res://Interact.gd" id="2_psckv"]
 [ext_resource type="Shader" path="res://shaders/wand_tip_shader.gdshader" id="3_t2jhw"]
 [ext_resource type="Shader" path="res://shaders/magic.gdshader" id="4_y7kw6"]
+[ext_resource type="PackedScene" uid="uid://diuvtfxv87grj" path="res://assets/Models/Wand.glb" id="5_yhr14"]
 [ext_resource type="PackedScene" uid="uid://djtu0nb7ywvnk" path="res://components/spellcraft_component.tscn" id="6_rxapj"]
 [ext_resource type="PackedScene" uid="uid://bfhmafutkpdfb" path="res://components/statuses_component.tscn" id="7_jpr4f"]
 [ext_resource type="PackedScene" uid="uid://dilj54b7qj63h" path="res://character_animation.tscn" id="8_n7h8n"]
@@ -12,20 +13,6 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_abrjf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1cuxp"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c33ep"]
-render_priority = 127
-albedo_color = Color(0.109804, 0.0784314, 0.027451, 1)
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 5.04
-emission_operator = 1
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_8ynqx"]
-material = SubResource("StandardMaterial3D_c33ep")
-top_radius = 0.005
-bottom_radius = 0.005
-height = 0.247
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jdur1"]
 shader = ExtResource("3_t2jhw")
@@ -257,10 +244,8 @@ spring_length = 0.2
 [node name="WandPosition" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.284491, -0.0754625, -0.326031)
 
-[node name="Wand" type="MeshInstance3D" parent="Camera3D/WandPosition"]
+[node name="Wand" type="Node3D" parent="Camera3D/WandPosition"]
 transform = Transform3D(1, 0, 0, 0, 0.752836, 0.658208, 0, -0.658208, 0.752836, 0, 0, 0)
-mesh = SubResource("CylinderMesh_8ynqx")
-skeleton = NodePath("../..")
 
 [node name="WandTip" type="Marker3D" parent="Camera3D/WandPosition/Wand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00169069, 0.125225, -0.00201964)
@@ -274,6 +259,9 @@ process_material = SubResource("ShaderMaterial_jdur1")
 draw_pass_1 = SubResource("BoxMesh_ajyor")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Camera3D/WandPosition/Wand/WandTip"]
+
+[node name="Wand" parent="Camera3D/WandPosition/Wand" instance=ExtResource("5_yhr14")]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0.000574797, -0.128186, 0.00121737)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
