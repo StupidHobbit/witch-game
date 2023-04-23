@@ -1,8 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://djtu0nb7ywvnk"]
+[gd_scene load_steps=10 format=3 uid="uid://djtu0nb7ywvnk"]
 
 [ext_resource type="Script" path="res://components/SpellcraftComponent.gd" id="1_aljns"]
 [ext_resource type="Script" path="res://SpellPanelInterface.gd" id="2_uh2vv"]
 [ext_resource type="PackedScene" uid="uid://df3o4x1dkx6lh" path="res://ui/spell_panel.tscn" id="3_82o7l"]
+[ext_resource type="Shader" path="res://shaders/wand_tip_shader.gdshader" id="4_nfcpl"]
+[ext_resource type="Shader" path="res://shaders/magic.gdshader" id="5_kmecg"]
+[ext_resource type="PackedScene" uid="uid://diuvtfxv87grj" path="res://assets/Models/Wand.glb" id="6_ebchc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6doen"]
+shader = ExtResource("4_nfcpl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5so4"]
+render_priority = 0
+shader = ExtResource("5_kmecg")
+shader_parameter/power = 0.0
+shader_parameter/light_intensity = 1.0
+shader_parameter/light_color = Vector3(1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m53ik"]
+material = SubResource("ShaderMaterial_b5so4")
+size = Vector3(0.001, 0.001, 0.001)
 
 [node name="SpellcraftComponent" type="Node"]
 script = ExtResource("1_aljns")
@@ -34,3 +51,26 @@ offset_right = 32.0
 offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="CastTime" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Wand" type="Node3D" parent="."]
+transform = Transform3D(0.68293, -0.710249, -0.170743, 0.705418, 0.580522, 0.406669, -0.189716, -0.398171, 0.897478, -0.103216, -0.0122401, 0.0311386)
+
+[node name="WandTip" type="Marker3D" parent="Wand"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, -0.00109416, 0.211342, 0.00078696)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Wand/WandTip"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00276804, -0.00302076, 0.00306487)
+amount = 50
+lifetime = 3.0
+local_coords = true
+process_material = SubResource("ShaderMaterial_6doen")
+draw_pass_1 = SubResource("BoxMesh_m53ik")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Wand/WandTip"]
+
+[node name="Wand" parent="Wand" instance=ExtResource("6_ebchc")]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0.000574797, -0.128186, 0.00121737)

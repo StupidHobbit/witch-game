@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SpellData" load_steps=6 format=3 uid="uid://bvd6yfoip8l6t"]
+
+[ext_resource type="Script" path="res://magic/spell_data.gd" id="1_i70kd"]
+[ext_resource type="PackedScene" uid="uid://kmi342t13pr1" path="res://projectiles/spell_projectile.tscn" id="1_kgkbq"]
+[ext_resource type="Script" path="res://magic/projectile_data.gd" id="2_1d6rq"]
+[ext_resource type="Texture2D" uid="uid://dbhb2pnkytvds" path="res://assets/icons/blast.svg" id="2_y4kuo"]
+
+[sub_resource type="Resource" id="Resource_6a45r"]
+script = ExtResource("2_1d6rq")
+scene = ExtResource("1_kgkbq")
+initial_velocity = 20.0
+
+[resource]
+script = ExtResource("1_i70kd")
+slug = "blast"
+name = "Blast"
+description = "Fires a projectile that deals some damage"
+texture = ExtResource("2_y4kuo")
+projectile = SubResource("Resource_6a45r")
+prepare_time = 0.5
+color = Color(0.658824, 0.0156863, 0.596078, 1)
+light_intensity = 0.1

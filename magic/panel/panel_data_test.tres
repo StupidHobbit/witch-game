@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="SpellPanelData" load_steps=5 format=3 uid="uid://cpfixvdixxqmv"]
+[gd_resource type="Resource" script_class="SpellPanelData" load_steps=7 format=3 uid="uid://cpfixvdixxqmv"]
 
 [ext_resource type="Script" path="res://magic/panel/panel_data.gd" id="1_ygvje"]
 [ext_resource type="Script" path="res://magic/panel/slot_data.gd" id="2_pjkwy"]
 [ext_resource type="Resource" uid="uid://b4tn8kav51gu1" path="res://magic/spells/light.tres" id="3_5fjed"]
+[ext_resource type="Resource" uid="uid://bvd6yfoip8l6t" path="res://magic/spells/blast.tres" id="3_hhb3s"]
 
 [sub_resource type="Resource" id="Resource_n76j5"]
+script = ExtResource("2_pjkwy")
+spell_data = ExtResource("3_hhb3s")
+
+[sub_resource type="Resource" id="Resource_3877d"]
 script = ExtResource("2_pjkwy")
 spell_data = ExtResource("3_5fjed")
 
 [resource]
 script = ExtResource("1_ygvje")
-slot_datas = Array[ExtResource("2_pjkwy")]([SubResource("Resource_n76j5"), null, null, null, null, null])
+slot_datas = Array[ExtResource("2_pjkwy")]([SubResource("Resource_n76j5"), SubResource("Resource_3877d"), null, null, null, null])

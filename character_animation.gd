@@ -32,7 +32,6 @@ func break_spell():
 	spell_state = SpellState.None
 
 func cast():
-	spell_state = SpellState.None
 	animation_player.play("cast")
 	cast_animation_time = animation_player.current_animation_length
 	

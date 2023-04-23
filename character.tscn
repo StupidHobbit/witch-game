@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d5360lvtbvie"]
+[gd_scene load_steps=23 format=3 uid="uid://d5360lvtbvie"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_611ae"]
 [ext_resource type="Resource" uid="uid://cpfixvdixxqmv" path="res://magic/panel/panel_data_test.tres" id="2_jbxho"]
@@ -17,7 +17,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jdur1"]
 shader = ExtResource("3_t2jhw")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5so4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_du2xn"]
 render_priority = 0
 shader = ExtResource("4_y7kw6")
 shader_parameter/power = 0.0
@@ -25,7 +25,7 @@ shader_parameter/light_intensity = 1.0
 shader_parameter/light_color = Vector3(1, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ajyor"]
-material = SubResource("ShaderMaterial_b5so4")
+material = SubResource("ShaderMaterial_du2xn")
 size = Vector3(0.001, 0.001, 0.001)
 
 [sub_resource type="Animation" id="Animation_rsuby"]
@@ -53,6 +53,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-0.718436, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7vx4i"]
+resource_name = "blast"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/WandPosition/Wand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.5, 2),
+"transitions": PackedFloat32Array(2, -2, -2, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.025023, 0.0311386), Vector3(-0.103216, -0.0122401, 0.0311386), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/WandPosition/Wand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.5, 2),
+"transitions": PackedFloat32Array(2, -2, -2, 0.5),
+"update": 0,
+"values": [Vector3(-0.718436, 0, 0), Vector3(-0.235922, 0, 0), Vector3(-0.418805, -0.188001, 0.882219), Vector3(-0.718436, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_yhgmo"]
@@ -187,6 +215,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b45kd"]
 _data = {
 "RESET": SubResource("Animation_rsuby"),
+"blast": SubResource("Animation_7vx4i"),
 "cast": SubResource("Animation_yhgmo"),
 "idle": SubResource("Animation_8fxat"),
 "light": SubResource("Animation_vrowg"),
@@ -248,7 +277,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.284491, -0.0754625, -0.3260
 transform = Transform3D(1, 0, 0, 0, 0.752836, 0.658208, 0, -0.658208, 0.752836, 0, 0, 0)
 
 [node name="WandTip" type="Marker3D" parent="Camera3D/WandPosition/Wand"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00169069, 0.125225, -0.00201964)
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, -0.00109416, 0.211342, 0.00078696)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Camera3D/WandPosition/Wand/WandTip"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00276804, -0.00302076, 0.00306487)
@@ -270,10 +299,12 @@ libraries = {
 "": SubResource("AnimationLibrary_b45kd")
 }
 
-[node name="SpellcraftComponent" parent="." node_paths=PackedStringArray("statuses_component", "particles", "animation_component", "light") instance=ExtResource("6_rxapj")]
+[node name="SpellcraftComponent" parent="." node_paths=PackedStringArray("statuses_component", "particles", "animation_component", "camera", "wand_tip", "light") instance=ExtResource("6_rxapj")]
 statuses_component = NodePath("../StatusesComponent")
 particles = NodePath("../Camera3D/WandPosition/Wand/WandTip/GPUParticles3D")
 animation_component = NodePath("../character_animation")
+camera = NodePath("../Camera3D")
+wand_tip = NodePath("../Camera3D/WandPosition/Wand/WandTip")
 light = NodePath("../Camera3D/WandPosition/Wand/WandTip/OmniLight3D")
 spell_panel_data = ExtResource("2_jbxho")
 

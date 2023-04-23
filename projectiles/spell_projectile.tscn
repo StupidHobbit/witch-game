@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://kmi342t13pr1"]
+
+[ext_resource type="PackedScene" uid="uid://c82fjoup2ifxy" path="res://projectiles/projectile.tscn" id="1_x66t6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bbqrs"]
+radius = 0.05
+
+[sub_resource type="Curve" id="Curve_ewbm6"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.661157, -10.9091), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yss5t"]
+curve = SubResource("Curve_ewbm6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qhxet"]
+emission_shape = 2
+emission_sphere_radius = 0.2
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+radial_accel_max = 1.51
+radial_accel_curve = SubResource("CurveTexture_yss5t")
+tangential_accel_max = 1.5
+angle_min = -720.0
+angle_max = 720.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hnpqb"]
+albedo_color = Color(0.619608, 0, 0.619608, 0.996078)
+emission_enabled = true
+emission = Color(0.619608, 0, 0.619608, 0.996078)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t7hc7"]
+material = SubResource("StandardMaterial3D_hnpqb")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gpn8"]
+albedo_color = Color(0.619608, 0, 0.619608, 0.996078)
+emission_enabled = true
+emission = Color(0.619608, 0, 0.619608, 0.996078)
+
+[sub_resource type="TorusMesh" id="TorusMesh_uv5eh"]
+material = SubResource("StandardMaterial3D_3gpn8")
+inner_radius = 0.1
+outer_radius = 0.2
+
+[node name="projectile" instance=ExtResource("1_x66t6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+shape = SubResource("SphereShape3D_bbqrs")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_qhxet")
+draw_pass_1 = SubResource("BoxMesh_t7hc7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(9.15414e-05, 0.01192, 0.999929, 0.999971, -0.00767943, 0, 0.00767889, 0.999899, -0.0119203, 0, 0, 0)
+mesh = SubResource("TorusMesh_uv5eh")

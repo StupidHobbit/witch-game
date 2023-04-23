@@ -6,6 +6,7 @@ class_name SpellData
 @export var name: String = ""
 @export_multiline var description: String = ""
 @export var texture: Texture
+@export var projectile: ProjectileData
 
 @export var prepare_time: float = 1
 @export var color: Color = Color()

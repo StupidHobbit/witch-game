@@ -4,4 +4,4 @@ extends Control
 
 
 func set_player_spell_panel_data(spell_panel_data: SpellPanelData):
-	  spell_panel.set_player_spell_panel_data(spell_panel_data)
+	spell_panel.set_player_spell_panel_data(spell_panel_data)

@@ -5,18 +5,26 @@ class_name SpellcraftComponent
 @export var statuses_component: StatusesComponent
 @export var particles: GPUParticles3D
 @export var animation_component: CharacterAnimation
+@export var camera: Camera3D
+@export var wand_tip: Node3D
 @export var light: Light3D
 @export var spell_panel_data: SpellPanelData
 
 @onready var spell_panel = $SpellPanelInterface/SpellPanel
+@onready var cast_time: Timer = $CastTime
 
 var chosen_spell: SpellData
 var is_preparing: bool = false
+var is_casting: bool = false
 var prepared: bool = false
 var current_preparation_time: float 
 var material: ShaderMaterial
+var viewport_center: Vector2
+var level: Node
 
 func _ready():
+	level = get_parent().get_parent()
+	viewport_center = get_viewport().size / 2
 	spell_panel.set_player_spell_panel_data(spell_panel_data)
 	material = particles.draw_pass_1.surface_get_material(0)
 	if not material is ShaderMaterial:
@@ -30,6 +38,9 @@ func _process(delta: float):
 		start_preparation()
 	if Input.is_action_just_released("cast"):
 		stop_preparation()
+		if not prepared:
+			animation_component.break_spell()	
+			set_particles_power(0)
 	update_spell(delta)
 	
 		
@@ -48,6 +59,8 @@ func choose_spell(spell_data: SpellData):
 	set_light_intensity(chosen_spell.light_intensity)
 	
 func update_spell(delta: float):
+	if is_casting:
+		return
 	if is_preparing and not prepared:
 		update_preparation(delta)
 	if not is_preparing and prepared:
@@ -63,9 +76,26 @@ func update_preparation(delta: float):
 		animation_component.prepare_spell()
 
 func cast():
+	animation_component.cast()
+	is_casting = true
+	cast_time.start(cast_time.wait_time)
+	await cast_time.timeout
 	stop_preparation()
 	prepared = false
-	animation_component.cast()
+	animation_component.break_spell()	
+	set_particles_power(0)
+	is_casting = false
+	spell_logic()
+	
+func spell_logic():
+	var projectile_data = chosen_spell.projectile
+	if projectile_data == null:
+		return
+	var projectile = projectile_data.scene.instantiate()
+	level.add_child(projectile)
+	projectile.global_position = wand_tip.global_position
+	projectile.velocity = camera.project_ray_normal(viewport_center) * projectile_data.initial_velocity
+	projectile.global_rotation = camera.global_rotation
 	
 func start_preparation():
 	current_preparation_time = 0
@@ -74,8 +104,6 @@ func start_preparation():
 	animation_component.start_preparing_spell(chosen_spell.slug)
 
 func stop_preparation():
-	set_particles_power(0)
-	animation_component.break_spell()	
 	is_preparing = false
 	
 func set_particles_power(power: float):
