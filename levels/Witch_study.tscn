@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfa0hurght1do"]
-
-[ext_resource type="PackedScene" uid="uid://2nbpxm7rv5y3" path="res://assets/Models/Whitch_study.glb" id="1_0gp6m"]
-
-[node name="Witch_study" type="Node3D"]
-
-[node name="Whitch_study" parent="." instance=ExtResource("1_0gp6m")]
