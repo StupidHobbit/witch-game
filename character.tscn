@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://d5360lvtbvie"]
+[gd_scene load_steps=26 format=3 uid="uid://d5360lvtbvie"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_611ae"]
+[ext_resource type="PackedScene" uid="uid://c7orvpb14unq5" path="res://components/HealthComponent.tscn" id="2_2wxrl"]
 [ext_resource type="Resource" uid="uid://cpfixvdixxqmv" path="res://magic/panel/panel_data_test.tres" id="2_jbxho"]
 [ext_resource type="Script" path="res://Interact.gd" id="2_psckv"]
 [ext_resource type="Shader" path="res://shaders/wand_tip_shader.gdshader" id="3_t2jhw"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://djtu0nb7ywvnk" path="res://components/spellcraft_component.tscn" id="6_rxapj"]
 [ext_resource type="PackedScene" uid="uid://bfhmafutkpdfb" path="res://components/statuses_component.tscn" id="7_jpr4f"]
 [ext_resource type="PackedScene" uid="uid://dilj54b7qj63h" path="res://character_animation.tscn" id="8_n7h8n"]
+[ext_resource type="PackedScene" uid="uid://xo3w3js6jcj5" path="res://components/HurtBoxComponent.tscn" id="11_hti3i"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_abrjf"]
 
@@ -223,9 +225,14 @@ _data = {
 "prepared": SubResource("Animation_bhdtc")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mwu8b"]
+
 [node name="Character" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14577e-05, 0.72062, -0.00247538)
 script = ExtResource("1_611ae")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_2wxrl")]
+max_hp = 10
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_abrjf")
@@ -312,3 +319,9 @@ spell_panel_data = ExtResource("2_jbxho")
 
 [node name="character_animation" parent="." node_paths=PackedStringArray("animation_player") instance=ExtResource("8_n7h8n")]
 animation_player = NodePath("../AnimationPlayer")
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("11_hti3i")]
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBoxComponent"]
+shape = SubResource("CapsuleShape3D_mwu8b")

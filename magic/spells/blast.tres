@@ -9,6 +9,7 @@
 script = ExtResource("2_1d6rq")
 scene = ExtResource("1_kgkbq")
 initial_velocity = 20.0
+damage = 10
 
 [resource]
 script = ExtResource("1_i70kd")

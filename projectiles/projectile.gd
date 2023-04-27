@@ -1,6 +1,9 @@
 extends Area3D
+class_name Projectile
 
 signal landed()
+
+@export var data: ProjectileData
 
 var velocity: Vector3
 
@@ -10,12 +13,14 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float):
+func _physics_process(delta: float):
 	position += velocity * delta
 
 	if not has_overlapping_bodies():
 		return
 		
-	for body in get_overlapping_bodies():
-		landed.emit(self, body)
+	landed.emit(self)
 	queue_free()
+
+func get_stats() -> ProjectileData:
+	return data

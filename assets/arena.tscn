@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://disgtegkpcu51"]
+
+[ext_resource type="PackedScene" uid="uid://yy6x3ginwrij" path="res://assets/Arena.glb" id="1_hriy0"]
+[ext_resource type="Script" path="res://interactables/examinable.gd" id="2_t7p1n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rr27v"]
+radius = 0.024
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xo0xg"]
+height = 0.222
+radius = 0.028
+
+[node name="Arena" instance=ExtResource("1_hriy0")]
+
+[node name="Crystalball" parent="Wall_study" index="31"]
+script = ExtResource("2_t7p1n")
+
+[node name="Gem" parent="Wall_study" index="44"]
+script = ExtResource("2_t7p1n")
+
+[node name="collision" type="StaticBody3D" parent="Wall_study/Gem" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Gem/collision" index="0"]
+shape = SubResource("SphereShape3D_rr27v")
+
+[node name="Spoon" parent="Wall_study" index="77"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Spoon" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Spoon/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 7.45058e-09, 0, 1, -1.49012e-08, 0, 7.45058e-09, 1, -0.00674272, 0.0391169, -0.0222268)
+shape = SubResource("CylinderShape3D_xo0xg")

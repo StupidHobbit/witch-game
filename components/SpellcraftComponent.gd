@@ -96,6 +96,8 @@ func spell_logic():
 	projectile.global_position = wand_tip.global_position
 	projectile.velocity = camera.project_ray_normal(viewport_center) * projectile_data.initial_velocity
 	projectile.global_rotation = camera.global_rotation
+	projectile.data = projectile_data
+
 	
 func start_preparation():
 	current_preparation_time = 0

@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="FPS"
+run/main_scene="res://levels/Arena.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=3
 
 [editor]
 

@@ -4,8 +4,11 @@ class_name Character
 
 @export var SPEED = 6.0
 @export var RUNNING_SPEED = 10.0
+@export var SPEED_DAMPING = 4.0
 @export var CROUCHING_SPEED = 4.0
 @export var CROUCHING_DELTA = 0.5
+@export var CROUCHING_BOOST_SPEED = 13.0
+@export var CROUCHING_BOOST_COOLDOWN = 5.0
 @export var JUMP_VELOCITY = 6
 @export var jumping_gravity: float = 15
 @export var falling_gravity: float = 30
@@ -18,10 +21,12 @@ class_name Character
 
 var time_from_last_jump_press: float = 100 
 var time_from_last_on_floor: float = 0 
+var time_from_last_crouching_boost: float = 0 
 var climbing_time: float = 0.5
 var turn = Vector2(0, 0)
 var viewport_size: Vector2
 var movement_disabled: bool = false
+var has_crouching_boost: bool = false
 var examinated_item: Examinable
 
 @onready var camera = $Camera3D
@@ -35,7 +40,8 @@ func _ready():
 
 func examine(item: Examinable, collision_rid: RID):
 	item.reparent(holder)
-	holder.add_excluded_object(collision_rid)
+	if collision_rid.is_valid():
+		holder.add_excluded_object(collision_rid)
 	examinated_item = item
 	disable_movement()
 
@@ -45,8 +51,8 @@ func _physics_process(delta: float):
 		return
 	apply_vertical_movement(delta)
 	apply_rotation()
-	apply_horizontal_movement(delta)
 	apply_crouching(delta)
+	apply_horizontal_movement(delta)
 	move_and_slide()
 
 func apply_vertical_movement(delta: float):
@@ -79,6 +85,10 @@ func apply_rotation():
 	camera.rotation = Vector3(-rotation.y, 0, 0)
 
 func apply_crouching(delta: float):
+	time_from_last_crouching_boost -= delta
+	if Input.is_action_just_pressed("crouch") and time_from_last_crouching_boost <= 0:
+		has_crouching_boost = true
+	
 	var to = 0
 	
 	if is_crouching():
@@ -91,6 +101,9 @@ func apply_horizontal_movement(delta: float):
 	
 	var speed = get_current_speed()
 	if direction:
+		var actual_horizontal_speed = _get_actual_horizontal_speed()
+		if actual_horizontal_speed > speed:
+			speed = move_toward(actual_horizontal_speed, speed, SPEED_DAMPING * delta)
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 		if is_on_floor():
@@ -100,6 +113,9 @@ func apply_horizontal_movement(delta: float):
 		velocity.x = move_toward(velocity.x, 0, speed * delta / slowdown_time)
 		velocity.z = move_toward(velocity.z, 0, speed * delta / slowdown_time)
 		
+func _get_actual_horizontal_speed() -> float:
+	return sqrt(velocity.x ** 2 + velocity.z ** 2)
+
 func update_examination():
 	if examinated_item == null or Input.is_action_pressed("interact"):
 		return
@@ -124,6 +140,10 @@ func enable_movement():
 	movement_disabled = false
 
 func get_current_speed() -> float:
+	if has_crouching_boost and is_on_floor():
+		has_crouching_boost = false
+		time_from_last_crouching_boost = CROUCHING_BOOST_COOLDOWN
+		return CROUCHING_BOOST_SPEED
 	if is_crouching():	
 		return CROUCHING_SPEED
 	if is_running():

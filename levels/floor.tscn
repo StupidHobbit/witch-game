@@ -10,6 +10,7 @@ size = Vector2(1000, 1000)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_a8sov"]
 
 [node name="Floor" type="StaticBody3D"]
+collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_ur504")

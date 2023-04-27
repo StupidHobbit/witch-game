@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhf2v5mu56aaw"]
+
+[ext_resource type="Script" path="res://enemies/dummy.gd" id="1_ibsrv"]
+[ext_resource type="PackedScene" uid="uid://xo3w3js6jcj5" path="res://components/HurtBoxComponent.tscn" id="2_ihhdk"]
+[ext_resource type="PackedScene" uid="uid://c7orvpb14unq5" path="res://components/HealthComponent.tscn" id="3_8vog7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k1nyv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_temxn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hi7l"]
+albedo_color = Color(0.376471, 0.313726, 0.0235294, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_i0p5l"]
+material = SubResource("StandardMaterial3D_5hi7l")
+
+[node name="dummy" type="CharacterBody3D"]
+script = ExtResource("1_ibsrv")
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("2_ihhdk")]
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBoxComponent"]
+shape = SubResource("CapsuleShape3D_k1nyv")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_8vog7")]
+max_hp = 199
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_temxn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_i0p5l")
