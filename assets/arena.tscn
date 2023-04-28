@@ -1,19 +1,274 @@
-[gd_scene load_steps=5 format=3 uid="uid://disgtegkpcu51"]
+[gd_scene load_steps=31 format=3 uid="uid://disgtegkpcu51"]
 
 [ext_resource type="PackedScene" uid="uid://yy6x3ginwrij" path="res://assets/Arena.glb" id="1_hriy0"]
 [ext_resource type="Script" path="res://interactables/examinable.gd" id="2_t7p1n"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfhk0"]
+size = Vector3(0.126, 0.165, 0.106)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mdy2o"]
+size = Vector3(0.26, 0.256, 0.125)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wok4l"]
+size = Vector3(0.238, 0.224, 0.054)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fsn7k"]
+size = Vector3(0.142, 0.207, 0.045)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c15t8"]
+size = Vector3(0.27, 0.219, 0.067)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_int11"]
+size = Vector3(0.168, 0.168, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hv74s"]
+size = Vector3(0.2, 0.211, 0.043)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fk2xw"]
+size = Vector3(0.29, 0.213, 0.294)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s5gsa"]
+size = Vector3(0.218, 0.213, 0.154)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s3x7a"]
+size = Vector3(0.171, 0.215, 0.189)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_if6jt"]
+size = Vector3(0.184, 0.135, 0.108)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y2n5j"]
+size = Vector3(0.018, 0.073, 0.025)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qm6gf"]
+size = Vector3(0.026, 0.084, 0.025)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0qdti"]
+size = Vector3(0.086, 0.275, 0.056)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tdpkb"]
+height = 0.26
+radius = 0.064
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_av1is"]
+size = Vector3(0.087, 0.171, 0.08)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hmjnp"]
+size = Vector3(0.191, 0.052, 0.307)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ps1xm"]
+height = 0.289
+radius = 0.089
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yetss"]
+height = 0.287
+radius = 0.074
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_rr27v"]
 radius = 0.024
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q8n75"]
+radius = 0.022
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rltlo"]
+size = Vector3(0.253, 0.251, 0.084)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cft0c"]
+size = Vector3(0.181, 0.242, 0.113)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_aowle"]
+height = 0.05
+radius = 0.019
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xo0xg"]
 height = 0.222
 radius = 0.028
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwyy1"]
+size = Vector3(0.051, 0.552, 0.238)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_23c4m"]
+size = Vector3(0.308, 0.192, 0.133)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bhho0"]
+size = Vector3(0.377, 0.303, 0.395)
+
 [node name="Arena" instance=ExtResource("1_hriy0")]
+
+[node name="Bag_1" parent="Wall_study" index="0"]
+transform = Transform3D(0.821361, 0, -1.25529, 0, 1.50013, 0, 1.25529, 0, 0.821361, 1.30548, 1.2906, -0.888603)
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Bag_1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Bag_1/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00475597, 0.0569457, 0.000104427)
+shape = SubResource("BoxShape3D_yfhk0")
+
+[node name="Book_2" parent="Wall_study" index="6"]
+script = ExtResource("2_t7p1n")
+
+[node name="Book_3" parent="Wall_study" index="7"]
+transform = Transform3D(1.50013, 0, 0, 0, 1.50013, 0, 0, 0, 1.50013, 1.19036, 1.32212, 0.62262)
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Book_3" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Book_3/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_mdy2o")
+
+[node name="Book_4" parent="Wall_study" index="8"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Book_4" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Book_4/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_wok4l")
+
+[node name="Book_5" parent="Wall_study" index="9"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Book_5" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Book_5/StaticBody3D" index="0"]
+transform = Transform3D(1, 7.45058e-09, 0, 0, 1, -1.11759e-08, 0, -1.49012e-08, 1, 0, -0.00900805, 0.000713348)
+shape = SubResource("BoxShape3D_fsn7k")
+
+[node name="Book_6" parent="Wall_study" index="10"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Book_6" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Book_6/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0022175, 0)
+shape = SubResource("BoxShape3D_c15t8")
+
+[node name="Book_7" parent="Wall_study" index="11"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Book_7" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Book_7/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_int11")
+
+[node name="Book_8" parent="Wall_study" index="12"]
+transform = Transform3D(-0.191823, -1.48782, -2.23537e-07, -8.94148e-08, -3.57659e-07, 1.50013, -1.48782, 0.191823, 0, 1.13837, 0.686838, 0.373079)
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Book_8" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Book_8/StaticBody3D" index="0"]
+transform = Transform3D(1, 5.96046e-08, 7.10543e-15, 5.96046e-08, 1, 0, -1.56319e-13, -2.84217e-14, 1, 0.0350628, -0.00931096, 0.00387532)
+shape = SubResource("BoxShape3D_hv74s")
+
+[node name="Cauldron" parent="Wall_study" index="22"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Cauldron" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Cauldron/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106998, 0)
+shape = SubResource("BoxShape3D_fk2xw")
+
+[node name="Cauldrons3" parent="Wall_study" index="25"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Cauldrons3" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Cauldrons3/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -0.00789642, 0.0640848, 0.0100954)
+shape = SubResource("BoxShape3D_s5gsa")
+
+[node name="Cauldrons_fireplace" parent="Wall_study" index="26"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Cauldrons_fireplace" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Cauldrons_fireplace/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0488524, 0)
+shape = SubResource("BoxShape3D_s3x7a")
+
+[node name="Chest" parent="Wall_study" index="27"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Chest" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Chest/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 2.08616e-07, 0, 1, 0, -2.08616e-07, 0, 1, 0, 0.0540276, 0)
+shape = SubResource("BoxShape3D_if6jt")
+
+[node name="Crystal_long" parent="Wall_study" index="29"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Crystal_long" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Crystal_long/StaticBody3D" index="0"]
+transform = Transform3D(1, 1.42109e-14, -4.79616e-14, 1.42109e-14, 1, 0, 5.32907e-15, 0, 1, -0.000720859, 0, 0)
+shape = SubResource("BoxShape3D_y2n5j")
+
+[node name="Crystal_long_2" parent="Wall_study" index="30"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Crystal_long_2" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Crystal_long_2/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_qm6gf")
 
 [node name="Crystalball" parent="Wall_study" index="31"]
 script = ExtResource("2_t7p1n")
+
+[node name="Dagger_2" parent="Wall_study" index="33"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Dagger_2" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Dagger_2/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 3.72529e-09, -5.96046e-08, 1, 5.58794e-09, 0, 0, 1, 0.000827789, -0.051384, 0.00353932)
+shape = SubResource("BoxShape3D_0qdti")
+
+[node name="Flask_big" parent="Wall_study" index="35"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Flask_big" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Flask_big/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.113604, 0)
+shape = SubResource("CylinderShape3D_tdpkb")
+
+[node name="Flask_cube" parent="Wall_study" index="36"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Flask_cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Flask_cube/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0836462, 0)
+shape = SubResource("BoxShape3D_av1is")
+
+[node name="Flask_torus" parent="Wall_study" index="40"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Flask_torus" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Flask_torus/StaticBody3D" index="0"]
+transform = Transform3D(0.970314, -0.0179505, 0.241179, 0.0219837, 0.999658, -0.0140423, -0.240845, 0.0189274, 0.970379, -0.0344191, 3.33786e-06, -0.132794)
+shape = SubResource("BoxShape3D_hmjnp")
+
+[node name="Flask_tri" parent="Wall_study" index="41"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Flask_tri" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Flask_tri/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.130155, 0)
+shape = SubResource("CylinderShape3D_ps1xm")
+
+[node name="FlaskTable" parent="Wall_study" index="42"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/FlaskTable" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/FlaskTable/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.142818, 0)
+shape = SubResource("CylinderShape3D_yetss")
 
 [node name="Gem" parent="Wall_study" index="44"]
 script = ExtResource("2_t7p1n")
@@ -23,6 +278,40 @@ script = ExtResource("2_t7p1n")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Gem/collision" index="0"]
 shape = SubResource("SphereShape3D_rr27v")
 
+[node name="Jewelry_2" parent="Wall_study" index="47"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Jewelry_2" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Jewelry_2/StaticBody3D" index="0"]
+shape = SubResource("SphereShape3D_q8n75")
+
+[node name="Scroll_open_1" parent="Wall_study" index="68"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Scroll_open_1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Scroll_open_1/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_rltlo")
+
+[node name="Scroll_open_4" parent="Wall_study" index="71"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Scroll_open_4" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Scroll_open_4/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -2.13163e-14, 7.10543e-15, 1, 0, 0, -0.00480455)
+shape = SubResource("BoxShape3D_cft0c")
+
+[node name="SmallFlask_4" parent="Wall_study" index="75"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/SmallFlask_4" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/SmallFlask_4/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0265521, 0)
+shape = SubResource("CylinderShape3D_aowle")
+
 [node name="Spoon" parent="Wall_study" index="77"]
 script = ExtResource("2_t7p1n")
 
@@ -31,3 +320,31 @@ script = ExtResource("2_t7p1n")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Spoon/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 7.45058e-09, 0, 1, -1.49012e-08, 0, 7.45058e-09, 1, -0.00674272, 0.0391169, -0.0222268)
 shape = SubResource("CylinderShape3D_xo0xg")
+
+[node name="Stick" parent="Wall_study" index="79"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Stick" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Stick/StaticBody3D" index="0"]
+transform = Transform3D(1, -1.11759e-08, 0, 1.11759e-08, 1, 0, 5.96046e-08, 1.86265e-09, 1, 0.00279999, -0.0515103, -0.000421524)
+shape = SubResource("BoxShape3D_xwyy1")
+
+[node name="Tubes" parent="Wall_study" index="82"]
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Tubes" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/Tubes/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 1.78814e-07, 0, 1, 0, -1.78814e-07, 0, 1, 0, 0.0936724, 0)
+shape = SubResource("BoxShape3D_23c4m")
+
+[node name="WitchHat" parent="Wall_study" index="84"]
+transform = Transform3D(1.40545, -4.47035e-08, -0.524505, 0.0818829, 1.48174, 0.219411, 0.518074, -0.234192, 1.38822, 1.2518, 1.65103, 0.238808)
+script = ExtResource("2_t7p1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/WitchHat" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_study/WitchHat/StaticBody3D" index="0"]
+transform = Transform3D(1, 5.96046e-08, -2.98023e-08, 2.23517e-08, 0.999999, -1.63913e-07, 5.96046e-08, -1.19209e-07, 1, -0.0323288, 0.0200984, -0.00536728)
+shape = SubResource("BoxShape3D_bhho0")
