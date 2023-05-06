@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://rjtnamlnoshy"]
+
+[ext_resource type="Shader" path="res://test/lightning.gdshader" id="1_guge5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tm23d"]
+render_priority = 0
+shader = ExtResource("1_guge5")
+shader_parameter/light_color = Quaternion(0.32, 0.5, 0.82, 0.5)
+shader_parameter/arc_color = Quaternion(0.46, 0.68, 1, 1)
+shader_parameter/seed = Vector2(0, 0)
+shader_parameter/speed = 5.1
+shader_parameter/random_scale = 4.6
+shader_parameter/electro_scale = 11.459
+
+[sub_resource type="SphereMesh" id="SphereMesh_st8nk"]
+material = SubResource("ShaderMaterial_tm23d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a2k35"]
+render_priority = 0
+shader = ExtResource("1_guge5")
+shader_parameter/light_color = Quaternion(0.32, 0.5, 0.82, 0.5)
+shader_parameter/arc_color = Quaternion(0.46, 0.68, 1, 1)
+shader_parameter/seed = Vector2(0, 0)
+shader_parameter/speed = 9.1
+shader_parameter/random_scale = 9.6
+shader_parameter/electro_scale = 16.459
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uewy1"]
+lightmap_size_hint = Vector2i(82, 11)
+material = SubResource("ShaderMaterial_a2k35")
+size = Vector2(14.5, 0.215)
+
+[node name="lightning" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_st8nk")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.89345)
+mesh = SubResource("PlaneMesh_uewy1")

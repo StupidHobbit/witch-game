@@ -3,6 +3,8 @@ extends Interactable
 
 class_name Examinable
 
+@export var scale_while_examinated: float = 1.0
+
 var original_position: Vector3
 var original_rotation: Vector3
 var original_scale: Vector3
@@ -34,6 +36,7 @@ func on_interact(character: Character):
 	original_scale = scale
 	original_parent = get_parent()
 	character.examine(self, get_rid())
+	scale = scale * scale_while_examinated
 	
 func get_rid() -> RID:
 	if body == null:

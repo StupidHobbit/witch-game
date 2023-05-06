@@ -97,6 +97,7 @@ size = Vector3(0.377, 0.303, 0.395)
 [node name="Bag_1" parent="Wall_study" index="0"]
 transform = Transform3D(0.821361, 0, -1.25529, 0, 1.50013, 0, 1.25529, 0, 0.821361, 1.30548, 1.2906, -0.888603)
 script = ExtResource("2_t7p1n")
+scale_while_examinated = 0.6
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Bag_1" index="0"]
 
@@ -110,6 +111,7 @@ script = ExtResource("2_t7p1n")
 [node name="Book_3" parent="Wall_study" index="7"]
 transform = Transform3D(1.50013, 0, 0, 0, 1.50013, 0, 0, 0, 1.50013, 1.19036, 1.32212, 0.62262)
 script = ExtResource("2_t7p1n")
+scale_while_examinated = 0.5
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Book_3" index="0"]
 
@@ -215,6 +217,7 @@ shape = SubResource("BoxShape3D_qm6gf")
 
 [node name="Crystalball" parent="Wall_study" index="31"]
 script = ExtResource("2_t7p1n")
+scale_while_examinated = 0.7
 
 [node name="Dagger_2" parent="Wall_study" index="33"]
 script = ExtResource("2_t7p1n")
@@ -323,6 +326,7 @@ shape = SubResource("CylinderShape3D_xo0xg")
 
 [node name="Stick" parent="Wall_study" index="79"]
 script = ExtResource("2_t7p1n")
+scale_while_examinated = 0.5
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall_study/Stick" index="0"]
 
