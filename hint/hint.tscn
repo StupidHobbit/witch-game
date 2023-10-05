@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgvicrgi8ifrq"]
+
+[ext_resource type="Script" path="res://hint/hint.gd" id="1_5rv8g"]
+[ext_resource type="Shader" path="res://shaders/magic_sphere.gdshader" id="2_056eg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ikt3x"]
+size = Vector3(0.686, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1lf0t"]
+render_priority = 0
+shader = ExtResource("2_056eg")
+shader_parameter/fuwafuwa_speed = 1.5
+shader_parameter/fuwafuwa_size = 0.05
+shader_parameter/outline_color = Vector4(0.45, 0.7, 1, 1)
+shader_parameter/outline_ratio = 1.0
+shader_parameter/noise_speed = 0.2
+shader_parameter/noise_scale = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_k0oyc"]
+material = SubResource("ShaderMaterial_1lf0t")
+radius = 0.2
+height = 0.4
+
+[node name="hint" type="Node3D"]
+script = ExtResource("1_5rv8g")
+
+[node name="area" type="Area3D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34968, 0, 0)
+shape = SubResource("BoxShape3D_ikt3x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_k0oyc")
+
+[node name="HintLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29869, 0)
+billboard = 2

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://xeg7kfjh358l"]
+
+[ext_resource type="Texture2D" uid="uid://ddod24b8l5ut7" path="res://assets/Materials/Tile_02-128x128.png" id="1_os53n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtkbx"]
+albedo_texture = ExtResource("1_os53n")
+uv1_offset = Vector3(0.284, 0.21, -0.212)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_836e7"]
+material = SubResource("StandardMaterial3D_wtkbx")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eubfo"]
+
+[node name="platformer_meshes" type="Node3D"]
+
+[node name="cube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_836e7")
+skeleton = NodePath("cube")
+
+[node name="cube" type="StaticBody3D" parent="cube"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cube/cube"]
+shape = SubResource("BoxShape3D_eubfo")
